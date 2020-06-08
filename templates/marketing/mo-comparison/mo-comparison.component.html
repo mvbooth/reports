@@ -1,0 +1,85 @@
+<form [formGroup]="marketComparisonReport">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="marketComparisonReport"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>MMC</label>
+      <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Model Restriction String</label>
+      <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Market Offer Status *</label>
+      <p-multiSelect [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatus" [filter]="false"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-multiSelect [options]="_mkt.effectiveDateArray" formControlName="effectiveDate" [filter]="false"></p-multiSelect>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field action-field">
+      <button mat-flat-button color="primary" (click)="updateMarketOfferUI()"
+        [disabled]="!allowUpdateMO || !_mkt.allowUpdateMO">Update Market Offers</button>
+    </div>
+  </div>
+  <div class="c-picklist-wrap">
+    <p-pickList class="modal-picklist" [source]="_mkt.availableMarketOfferArray" [target]="_mkt.selectedMarketOfferArray"
+      [showSourceControls]="false" sourceHeader="Available Market Offers: {{_mkt.numberOfSelectedMOs}}"
+      targetHeader="Selected Market Offers *:" [responsive]="true"
+      [disabled]="!_mkt.availableMarketOfferArray.length && !_mkt.selectedMarketOfferArray.length" dragdrop="true"
+      dragdropScope="offers" [sourceStyle]="{'height':'210px'}" [targetStyle]="{'height':'210px'}"
+      (onMoveToTarget)="_mkt.updateSelectedIds(); updateSortBy()"
+      (onMoveToSource)="_mkt.updateSelectedIds(); _mkt.updateAvailableIds(); updateSortBy()"
+      (onTargetReorder)="_mkt.updateSelectedIds();"
+      (onSourceReorder)="_mkt.updateAvailableIds();" mvpShowPicklistButtonText>
+      <ng-template let-offer pTemplate="item">
+        <div [ngClass]="{'inactive-mo': offer.active === 'N'}" >
+          {{ offer.label }}
+        </div>
+      </ng-template>
+    </p-pickList>
+    <div class="sort-inputs">
+      <div class="sort-available">
+          <p-dropdown [disabled]="!showSourceSortBy" [options]="filterOptions" formControlName="sortBy1" placeholder="Sort By:" [autoWidth]="false"
+          (onChange)="_mkt.sortMarketOffers('available')"></p-dropdown>
+      </div>
+     <div class="sort-spacer"></div>
+     <div class="sort-selected">
+        <p-dropdown  [disabled]="!showTargetSortBy"[options]="filterOptions" formControlName="sortBy2" placeholder="Sort By:" [autoWidth]="false"
+        (onChange)="_mkt.sortMarketOffers('selected')"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Market Offer Attribute *</label>
+      <p-dropdown [options]="_mkt.marketOfferAttributeArray" formControlName="marketOfferAttribute" [autoWidth]="false"
+        placeholder="Choose"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Description Type *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" [autoWidth]="false"
+        placeholder="Choose"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <mat-radio-group formControlName="differenceAll">
+        <mat-radio-button value="D" checked>Differences</mat-radio-button>
+        <mat-radio-button value="A">All</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+</form>

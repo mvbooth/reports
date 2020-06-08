@@ -1,0 +1,69 @@
+<form [formGroup]="optionUsageSummaryReport">
+
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="optionUsageSummaryReport"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>MMC</label>
+      <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Model Restriction String</label>
+      <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Market Offer Status *</label>
+      <p-multiSelect [options]="_mkt.marketOfferStatusArray"  formControlName="marketOfferStatus"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-multiSelect [options]="_mkt.effectiveDateArray"  formControlName="effectiveDate"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Filter Codes VDS Family</label>
+      <p-multiSelect [options]="_mkt.filterVdsFamilyArray" formControlName="vdsFamily" [filter]="true"
+                     filterBy="label,value.name"></p-multiSelect>
+    </div>
+  </div>
+  <div class="c-form-wrap ">
+    <div class="c-form-field">
+      <label>Description Type *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+    </div>
+  </div>
+  <div class="c-form-wrap c-market-offer-lists no-align">
+    <div class="c-form-field">
+      <div class="c-market-offer-header">
+        <span>Select Codes:</span>
+        <input autocomplete="off" pInputText placeholder="Enter Code" formControlName="enterCodes" class="custom-codes">
+      </div>
+      <p-listbox [options]="_mkt.selectCodesArray" formControlName="selectCodes" multiple="multiple" checkbox="checkbox"></p-listbox>
+    </div>
+    <div class="c-form-field c-market-offer-actions">
+      <button mat-flat-button (click)="_mkt.addCodesAndEnable()">Add</button>
+      <button mat-flat-button (click)="_mkt.removeCodesAndDisable()">Remove</button>
+    </div>
+    <div class="c-form-field">
+      <div class="c-market-offer-header">
+        <span>Selected Codes:</span>
+      </div>
+      <p-listbox [options]="_mkt.selectedCodesArray" formControlName="selCodesCommaValues" multiple="multiple"
+                 checkbox="checkbox"></p-listbox>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-checkbox formControlName="displayRestrictionString">Display Restriction String</mat-checkbox>
+    </div>
+  </div>
+</form>

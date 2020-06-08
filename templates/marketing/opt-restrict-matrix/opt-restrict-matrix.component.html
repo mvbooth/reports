@@ -1,0 +1,70 @@
+<form>
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Model Year *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Marketing Group *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Market *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Nameplate *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Vehicle Line *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="MMC *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Market Offer ID *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field">
+      <mat-form-field>
+        <mat-select placeholder="Market Offer Revision *">
+          <mat-option *ngFor="let data of selectData" [value]="data.id">{{data.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,35 @@
+<form [formGroup]="mdlYrChangeGmnaRpt">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="mdlYrChangeGmnaRpt"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-dropdown [options]="_mkt.effectiveDateArray" formControlName="effectiveDate" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Option Description Type *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Option Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Previous Effective Date *</label>
+      <p-dropdown [options]="_mkt.previousEffectiveDateArray" formControlName="previousEffectiveDate"
+                  placeholder="Choose"
+                    [autoWidth]="false"></p-dropdown>
+    </div>
+  </div>
+  <p class="report-notes"><mat-icon>info</mat-icon> Selected Model Year will be compared to Previous Model Year<br>The Report only compares market offers in Final status</p>
+</form>

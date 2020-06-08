@@ -1,0 +1,68 @@
+<form [formGroup]="changeMoReport">
+   
+    <div class="c-form-wrap">
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+        </mat-form-field>
+      </div>
+    </div>
+    <mvp-vehicle-line-form [reportRef]="_mkt" [form]="changeMoReport"></mvp-vehicle-line-form>
+    <div class="c-form-wrap">
+      <div class="c-form-field">
+        <label>MMC</label>
+        <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode"></p-multiSelect>
+      </div>
+      <div class="c-form-field">
+        <label>Model Restriction String</label>
+        <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+      </div>
+      <div class="c-form-field">
+        <label>Description Type *</label>
+        <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Language *</label>
+        <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+      </div>
+    </div>
+    <div class="c-form-wrap">
+      <div class="c-form-field action-field">
+        <button mat-flat-button color="primary" (click)="updateMarketOfferUI()">Update Market Offers</button>
+      </div>
+    </div>
+    <div class="c-picklist-wrap">
+      <p-pickList class="modal-picklist" [source]="_mkt.availableMarketOfferArray" [target]="_mkt.selectedMarketOfferArray"
+        [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available Market Offers: {{_mkt.numberOfSelectedMOs}}"
+        targetHeader="Selected Market Offers *:" [responsive]="true"
+        [disabled]="!_mkt.availableMarketOfferArray.length && !_mkt.selectedMarketOfferArray.length" dragdrop="true"
+        dragdropScope="offers" [sourceStyle]="{'height':'210px'}" [targetStyle]="{'height':'210px'}"
+        (onMoveToTarget)="_mkt.updateSelectedIds(); _mkt.sortMarketOffers('selected');"
+        (onMoveToSource)="_mkt.updateSelectedIds(); _mkt.updateAvailableIds(); _mkt.sortMarketOffers('available');"
+        (onTargetReorder)="_mkt.updateSelectedIds();"
+        (onSourceReorder)="_mkt.updateAvailableIds();" mvpShowPicklistButtonText>
+        <ng-template let-offer pTemplate="item">
+          <div [ngClass]="{'inactive-mo': offer.active === 'N'}" >
+            {{ offer.label }}
+          </div>
+        </ng-template>
+      </p-pickList>
+    </div>
+    <div class="c-form-wrap">
+      <p class="c-form-wrap-header">Changes for date range *:</p>
+      <div class="c-form-field">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerFrom" placeholder="From" formControlName="fromDate" (focus)="pickerFrom.open()">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="c-form-field offset-half">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerTo" placeholder="To" formControlName="toDate" (focus)="pickerTo.open()">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>

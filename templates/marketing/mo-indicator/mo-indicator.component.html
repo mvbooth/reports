@@ -1,0 +1,54 @@
+<form [formGroup]="MoIndRpt">
+    <span class="run-in-background-note">
+        <mat-icon>info</mat-icon> Due to performance considerations, it is recommended to run this report in Background. See sidebar menu for selection.
+    </span>
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="MoIndRpt"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Market Offer Status *</label>
+      <p-dropdown [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatus" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-dropdown [options]="_mkt.effectiveDateArray" formControlName="effectiveDate" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Option Description Type *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Option Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Availability Indicator *</label>
+      <p-multiSelect [options]="indicator" formControlName="availabilityIndicator" placeholder="Choose"
+                     [filter]="false" [maxSelectedLabels]="1"></p-multiSelect>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-radio-group formControlName="group">
+        <mat-radio-button value="Y">Group</mat-radio-button>
+        <mat-radio-button value="N">Group with Details</mat-radio-button>
+      </mat-radio-group>
+      <mat-checkbox formControlName="displayRestrictionString">Display Restriction String</mat-checkbox>
+    </div>
+    <div class="c-form-field offset-half">
+      <label>Group By *</label>
+      <p-dropdown [options]="_mkt.groupByArray" formControlName="groupBy" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+  </div>
+</form>

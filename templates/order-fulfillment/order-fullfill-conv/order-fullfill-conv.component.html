@@ -1,0 +1,33 @@
+<form [formGroup]="conversionReport">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Model Year *</label>
+      <p-dropdown [options]="_of.modelYearArray" formControlName="modelYear" placeholder="Choose" [autoWidth]="false" (onChange)="change('modelYear')"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Marketing Group *</label>
+      <p-dropdown [options]="_of.marketingGroupArray" formControlName="marketingGroup" placeholder="Choose" [autoWidth]="false" (onChange)="change('marketingGroup')"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Nameplate *</label>
+      <p-dropdown [options]="_of.nameplateArray" formControlName="namePlate" placeholder="Choose" [autoWidth]="false" (onChange)="change('namePlate')"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Vehicle Product Code*</label>
+      <p-dropdown [options]="_of.vehicleLineArray" formControlName="vehicleLine" placeholder="Choose" [autoWidth]="false" (onChange)="change('vehicleLine')"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-dropdown [options]="_of.effectiveDateArray" formControlName="effectiveDate" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+    </div>
+  </div>
+</form>
+

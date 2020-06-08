@@ -1,0 +1,19 @@
+@import '~_variables.scss';
+.filters{
+    margin-bottom:1rem;
+
+    .c-form-field {
+      flex: none;
+      margin-right: 5px;
+
+      .mat-checkbox{
+        margin-right: 15px;
+        display:block;
+      }
+    }
+  }
+
+div.inactive-mo{
+  color:$placeholder-gray;
+}
+

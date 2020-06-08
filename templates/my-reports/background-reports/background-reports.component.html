@@ -1,0 +1,21 @@
+<div class="table-scroll-box">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" mvpTableSelectedHighlight matSortActive="time" matSortDirection="desc">
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="description">Description</th>
+      <td mat-cell *matCellDef="let element">{{element.description}}</td>
+    </ng-container>
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="time"> Time Stamp</th>
+      <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+    </ng-container>
+    <ng-container matColumnDef="report">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="report"> Report </th>
+      <td mat-cell *matCellDef="let element"> {{element.report}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef = "displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="setSelectedRow(row)" (dblclick)="getReports()"></tr>
+  </table>
+</div>
+<button mat-raised-button class="btn-mct btn-right" color="primary"  (click)="getReports()" [disabled]="disableActions">Download</button>
+<button mat-button class="btn btn-mct btn-right" color="warn"  (click)="deleteReportOutput()" [disabled]="disableActions">Delete</button>
+<span class="report-notes"><mat-icon>info</mat-icon> To download reports you must allow pop ups in your browser.</span>

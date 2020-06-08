@@ -1,0 +1,12 @@
+<div class="publish-date" [hidden]="!required">
+  <label>Publish Date
+    <span [hidden]="!required">*</span>
+  </label>
+  <p-dropdown [options]="pubDateOptions"
+              [filter]="false"  [disabled]="!readyToDisplay"
+              (onChange)="selection()"
+              [(ngModel)]="selectedOption"
+              [autoWidth]="false"
+              placeholder="Choose">
+    </p-dropdown>
+</div>

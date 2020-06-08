@@ -1,0 +1,47 @@
+<form [formGroup]="changeHistMisc">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <!-- <div class="c-form-field half">
+      <label>Table Name *</label>
+      <mat-form-field>
+        <mat-select placeholder="Choose" formControlName="tableName">
+          <mat-option *ngFor="let group of _ar.tableNameArray" [value]="group.value">{{group.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+
+    <div class="c-form-field half">
+      <label>Table Name *</label>
+      <p-dropdown [options]="_ar.tableNameArray" formControlName="tableName" [filter]="true" placeholder="Choose"></p-dropdown>
+    </div>
+  </div>
+
+  <p>Changes for Dates Ranging *</p>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-form-field>
+        <input matInput [matDatepicker]="frompicker" placeholder="From date" formControlName="fromDate" (focus)="frompicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+        <mat-datepicker #frompicker></mat-datepicker>
+      </mat-form-field>
+      <!-- <p-calendar [(ngModel)]="fromDate" placeholder="From Date" [showIcon]="true" formControlName="fromDate"></p-calendar> -->
+    </div>
+
+    <div class="c-form-field offset-half">
+      <mat-form-field>
+        <input matInput [matDatepicker]="topicker" placeholder="To date" formControlName="toDate" (focus)="topicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+        <mat-datepicker #topicker></mat-datepicker>
+      </mat-form-field>
+      <!-- <p-calendar [(ngModel)]="fromDate" placeholder="To Date" [showIcon]="true" formControlName="toDate"></p-calendar> -->
+    </div>
+  </div>
+
+</form>

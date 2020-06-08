@@ -1,0 +1,92 @@
+<form [formGroup]="marketingIntentReport">
+    <span class="run-in-background-note">
+        <mat-icon>info</mat-icon> Due to performance considerations, it is recommended to run this report in Background. See sidebar menu for selection.
+    </span>
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="marketingIntentReport"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>MMC</label>
+      <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Model Restriction String</label>
+      <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Market Offer Status *</label>
+      <p-multiSelect [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatus"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Effective Date *</label>
+      <p-multiSelect [options]="_mkt.effectiveDateArray" formControlName="effectiveDate"></p-multiSelect>
+    </div>
+    <div class="c-form-field">
+      <label>Description Type *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field action-field">
+      <button mat-flat-button color="primary" (click)="updateMarketOfferUI()" [disabled]="!allowUpdateMO">Update Market Offers</button>
+    </div>
+  </div>
+  <div class="filters">
+    <h3>Sort Market Offers</h3>
+    <div class="c-form-wrap centered">
+      <div class="c-form-field">
+        <label>Sort By</label>
+        <p-dropdown [disabled]="!sortDisable" [options]="filterOptions" (onChange)="changeSort($event, 3)" formControlName="sortBy1" placeholder="Choose" [autoWidth]="false">
+        </p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Sort By</label>
+        <p-dropdown [disabled]="!sort2Disable" (onChange)="changeSort($event, 2)" [options]="filterOptions" formControlName="sortBy2" placeholder="Choose" [autoWidth]="false">
+        </p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Sort By</label>
+        <p-dropdown [disabled]="!sort3Disable" (onChange)="changeSort($event, 1)" [options]="filterOptions" formControlName="sortBy3" placeholder="Choose" [autoWidth]="false">
+        </p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Sort By</label>
+        <p-dropdown [disabled]="!sort4Disable" (onChange)="changeSort($event, 0)" [options]="filterOptions" formControlName="sortBy4" placeholder="Choose" [autoWidth]="false">
+        </p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <mat-checkbox [disabled]="!showAMOCheckBox" formControlName="availableMOCheckbox">Available MO</mat-checkbox>
+        <mat-checkbox [disabled]="!showSMOCheckBox" formControlName="selectedMOCheckbox">Selected MO</mat-checkbox>
+      </div>
+      <button mat-flat-button color="primary" [disabled]="!allowMOSorting" (click)="_mkt.sortMarketOffers()">Sort</button>
+    </div>
+  </div>
+  <div class="c-picklist-wrap">
+    <p-pickList class="modal-picklist" [source]="_mkt.availableMarketOfferArray" [target]="_mkt.selectedMarketOfferArray"
+      [showSourceControls]="false" sourceHeader="Available Market Offers: {{_mkt.numberOfSelectedMOs}}"
+      targetHeader="Selected Market Offers *:" [responsive]="true"
+      [disabled]="!_mkt.availableMarketOfferArray.length && !_mkt.selectedMarketOfferArray.length" dragdrop="true"
+      dragdropScope="offers" [sourceStyle]="{'height':'210px'}" [targetStyle]="{'height':'210px'}"
+      (onMoveToTarget)="_mkt.updateSelectedIds(); handleFormIsValid(marketingIntentReport); updateCheckBox();"
+      (onMoveToSource)="_mkt.updateSelectedIds(); _mkt.updateAvailableIds(); handleFormIsValid(marketingIntentReport); updateCheckBox();"
+      (onTargetReorder)="_mkt.updateSelectedIds(); handleFormIsValid(marketingIntentReport);" 
+      (onSourceReorder)="_mkt.updateAvailableIds();" mvpShowPicklistButtonText>
+      <ng-template let-offer pTemplate="item">
+        <div [ngClass]="{'inactive-mo': offer.active === 'N'}" >
+          {{ offer.label }}
+        </div>
+      </ng-template>
+    </p-pickList>
+  </div>
+  <input type="hidden" formControlName="isLongReport" value="true"/>
+</form>

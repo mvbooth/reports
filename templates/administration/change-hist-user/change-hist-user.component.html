@@ -1,0 +1,50 @@
+<form [formGroup]="changeHistUser">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-radio-group formControlName="changedUser">
+        <mat-radio-button value="user" color="primary" checked>Changed User</mat-radio-button>
+        <mat-radio-button value="admin" color="primary">Changed by Admin</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <p-dropdown [options]="userList" formControlName="userName" placeholder="User Name *" [autoWidth]="false" [filter]="true"></p-dropdown>
+    </div>
+
+    <div class="c-form-field offset-half">
+      <mat-form-field>
+        <input autocomplete="off" matInput placeholder="GMIN *" formControlName="gmin">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <p>Changes for Dates Ranging *</p>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-form-field>
+        <input matInput [matDatepicker]="frompicker" placeholder="From date" formControlName="fromDate" (focus)="frompicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+        <mat-datepicker #frompicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="c-form-field offset-half">
+      <mat-form-field>
+        <input matInput [matDatepicker]="topicker" placeholder="To date" formControlName="toDate" (focus)="topicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+        <mat-datepicker #topicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

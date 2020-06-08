@@ -1,0 +1,68 @@
+<form [formGroup]="changeOptionPricing">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mvp-vehicle-line-form [reportRef]="_fr" [form]="changeOptionPricing"></mvp-vehicle-line-form>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Merchandise Model Code </label>
+      <p-multiSelect [options]="_fr.modelCodeArray"  formControlName="mmcCode" [filter]="false"></p-multiSelect>
+    </div>
+
+    <div class="c-form-field">
+      <label>Model Restriction String </label>
+      <p-dropdown [options]="_fr.restrictionStringArray" formControlName="modelRestrictionString" placeholder="Choose"
+                  [autoWidth]="false"></p-dropdown>
+    </div>
+
+        <div class="c-form-field">
+          <label>Availability Indicator </label>
+          <p-multiSelect [options]="_fr.availabilityIndicatorArray"  formControlName="availabilityInd" [filter]="false"></p-multiSelect>
+        </div>
+
+    <div class="c-form-field">
+      <label>Option Code </label>
+      <p-multiSelect [options]="_fr.optionCodeArray"  formControlName="selectedCodes" [filter]="false"></p-multiSelect>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="sort">
+      <label>Sort Order * </label>
+      <p-dropdown [options]="sortOrderOptions" formControlName="sortOrder" placeholder="Choose"
+                  [autoWidth]="true"></p-dropdown>
+    </div>
+    <div class="c-form-field status">
+      <mvp-status [status]="changeOptionPricing.get('status').value"
+                  (statusChanged)="changeOptionPricing.get('status').setValue($event)"
+                  [vehicleLine]="_fr.vehicleLine.value">
+      </mvp-status>
+    </div>
+    <div class="c-form-field">
+      <mvp-published-date
+            [status]="changeOptionPricing.get('status').value"
+            [vehicleLine]="_fr.vehicleLine.value"
+            [required]="changeOptionPricing.get('publishDate').validator != null"
+            (change)="changePublishDate($event)"
+            [selectedOpts]="publishId">
+      </mvp-published-date>
+  </div>
+  <div class="c-form-field">
+      <mvp-effective-date
+            [status]="changeOptionPricing.get('status').value"
+            [vehicleLine]="_fr.vehicleLine.value"
+            [publishId]="publishId"
+            [required]="changeOptionPricing.get('publishDate').validator != null"
+            (change)="changeEffectiveDate($event)"
+            [templateEffDate]="templateEffDateInput">
+      </mvp-effective-date>
+    </div>
+  </div>
+
+</form>

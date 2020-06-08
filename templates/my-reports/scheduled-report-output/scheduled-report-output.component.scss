@@ -1,0 +1,22 @@
+// .table-scroll-box {
+//   max-height: calc(100vh - 337px);
+// }
+
+.table-half-screen {
+  max-height: 250px;
+}
+
+.history-table {
+  max-height: 210px;
+}
+
+.page-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.history-progress-bar {
+  position: absolute;
+  z-index: 10;
+  top: 52px;
+}

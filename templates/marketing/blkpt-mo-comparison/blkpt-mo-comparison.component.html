@@ -1,0 +1,61 @@
+<form [formGroup]="blkptMoComparisonForm">
+    <span class="run-in-background-note">
+        <mat-icon>info</mat-icon> Due to performance considerations, it is recommended to run this report in Background. See sidebar menu for selection.
+    </span>
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_mkt" [form]="blkptMoComparisonForm"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>MMC</label>
+      <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode" [filter]="false"></p-multiSelect>
+    </div>
+    <div class="c-form-field offset-half">
+      <label>Model Restriction String</label>
+      <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString" [filter]="false"></p-multiSelect>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <fieldset>
+        <legend>Compare From:</legend>
+        <label>Market Offer Status *</label>
+        <p-dropdown [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatusFrom" placeholder="Choose" [filter]="false"></p-dropdown>
+        <label>Effective Date *</label>
+        <p-dropdown [options]="_mkt.effectiveDateArray" formControlName="effectiveDateFrom" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+      </fieldset>
+    </div>
+    <div class="c-form-field">
+      <fieldset>
+        <legend>Compare To:</legend>
+        <label>Market Offer Status *</label>
+        <p-dropdown [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatusTo" placeholder="Choose" [filter]="false"></p-dropdown>
+        <label>Effective Date *</label>
+        <p-dropdown [options]="_mkt.filteredEffectiveDateArray" formControlName="effectiveDateTo" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+      </fieldset>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Description *</label>
+      <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Language *</label>
+      <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <mat-radio-group formControlName="report">
+        <mat-radio-button value="BPMO" > Blockpoint MO Comparison</mat-radio-button>
+        <mat-radio-button value="LBPMO"> Large MO Blockpoint Comparison</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <input type="hidden" formControlName="isLongReport" value="true"/>
+</form>

@@ -1,0 +1,12 @@
+<form [formGroup]="changeOptionPricing">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mvp-vehicle-line-form [reportRef]="_fr" [form]="changeOptionPricing"></mvp-vehicle-line-form>
+
+</form>

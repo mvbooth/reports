@@ -1,0 +1,48 @@
+<form class="half-form" [formGroup]="changeHistMoUser">
+   
+    <div class="c-form-wrap">
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" formControlName="description" placeholder="Report Description *">
+        </mat-form-field>
+      </div>
+    </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>User *</label>
+    <p-dropdown [options]="_mkt.gminArray" formControlName="gmin" placeholder="Select User *"
+                [autoWidth]="false" [filter]="true"></p-dropdown>
+  </div>
+  </div>
+
+    <div class="c-form-wrap">
+      <div class="c-form-field">
+        <label>Description Type *</label>
+        <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" placeholder="Description Type *"
+                    [autoWidth]="false" [filter]="true"></p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Language *</label>
+        <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" placeholder="Language *"
+                    [autoWidth]="false" [filter]="true"></p-dropdown>
+      </div>
+    </div>
+    <div class="c-form-wrap">
+      <p class="c-form-wrap-header">Changes for date range *:</p>
+      <div class="c-form-field">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerFrom" formControlName="fromDate" placeholder="From:" (focus)="pickerFrom.open()">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="c-form-field">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerTo" formControlName="toDate" placeholder="To:" (focus)="pickerTo.open()">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </form>

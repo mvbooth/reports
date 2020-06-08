@@ -1,0 +1,40 @@
+<form [formGroup]="changeComparison">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mvp-vehicle-line-form [reportRef]="_fr" [form]="changeComparison"></mvp-vehicle-line-form>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Most Recent Published Date *</label>
+      <p-dropdown [options]="_fr.RecentDatesCmprArray" formControlName="toPublishId" placeholder="Choose"
+        [autoWidth]="false"></p-dropdown>
+    </div>
+
+    <div class="c-form-field">
+      <label>Previous Published Date *</label>
+      <p-dropdown [options]="_fr.CompareReportPreviousDateArray" formControlName="fromPublishId"
+        placeholder="Choose" [autoWidth]="false"></p-dropdown>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Comparison Report Type *</label>
+      <p-dropdown [options]="_fr.ComparisonTypesArray" formControlName="comparisionReportType" placeholder="Choose"
+        [autoWidth]="false"></p-dropdown>
+    </div>
+
+    <div class="c-form-field">
+      <label>Field Name *</label>
+      <p-multiSelect [options]="_fr.reportTypeFieldNameArray" [filter]="false" formControlName="compareColumns"
+        placeholder="Choose"></p-multiSelect>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,59 @@
+<form [formGroup]="vdsChangeForm">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" formControlName="description" placeholder="Report Description *">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Model Year *</label>
+      <p-dropdown [options]="_mkt.modelYearArray" formControlName="modelYear" [filter]="false" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Engineering Book *</label>
+      <p-dropdown [options]="_mkt.bookCodeArray" formControlName="enggBook" [filter]="false" placeholder="Choose" [autoWidth]="false" (onChange)="vdsFamilyFilter()"></p-dropdown>
+    </div>
+    <div class="c-form-field">
+      <label>Filter Code VDS Family *</label>
+      <p-multiSelect [options]="_mkt.filterVdsFamilyArray" formControlName="vdsFamily" [disabled]="true"></p-multiSelect>
+    </div>
+  </div>
+  <div class="c-form-wrap c-market-offer-lists no-align">
+    <div class="c-form-field">
+      <div class="c-market-offer-header">
+        <span>Select Codes:</span>
+        <input autocomplete="off" pInputText placeholder="Enter Code" formControlName="enterCodes" class="custom-codes">
+      </div>
+      <p-listbox [options]="_mkt.selectCodesArray" formControlName="selectCodes"  multiple="multiple" checkbox="checkbox"></p-listbox>
+    </div>
+    <div class="c-form-field c-market-offer-actions">
+      <button mat-flat-button (click)="_mkt.addCodesAndEnable()">Add</button>
+      <button mat-flat-button (click)="_mkt.removeCodesAndDisable()">Remove</button>
+    </div>
+    <div class="c-form-field">
+      <div class="c-market-offer-header">
+        <span>Selected Codes *:</span>
+      </div>
+      <p-listbox [options]="_mkt.selectedCodesArray" formControlName="selectedCodesFor" multiple="multiple" checkbox="checkbox"></p-listbox>
+    </div>
+  </div>
+  <div class="c-form-wrap">
+      <p class="c-form-wrap-header">Update Date Between *</p>
+    <div class="c-form-field">
+      <mat-form-field>
+        <input matInput [matDatepicker]="vdsChangeFromDatepicker" formControlName="beginDate" placeholder="From:" (focus)="vdsChangeFromDatepicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="vdsChangeFromDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #vdsChangeFromDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="c-form-field offset-half">
+      <mat-form-field>
+        <input matInput [matDatepicker]="vdsChangeToDatepicker" formControlName="lastDate" placeholder="To:"  (focus)="vdsChangeToDatepicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="vdsChangeToDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #vdsChangeToDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

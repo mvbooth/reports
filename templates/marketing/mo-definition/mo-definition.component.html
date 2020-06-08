@@ -1,0 +1,39 @@
+<form [formGroup]="moDefinitionReport">
+   
+    <div class="c-form-wrap">
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+        </mat-form-field>
+      </div>
+    </div>
+    <mvp-vehicle-line-form [reportRef]="_mkt" [form]="moDefinitionReport"></mvp-vehicle-line-form>
+    <div class="c-form-wrap">
+      <div class="c-form-field">
+        <label>MMC</label>
+        <p-multiSelect [options]="_mkt.mmcArray" formControlName="mmcCode"></p-multiSelect>
+      </div>
+      <div class="c-form-field">
+        <label>Model Restriction String</label>
+        <p-multiSelect [options]="_mkt.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+      </div>
+      <div class="c-form-field">
+        <label>Market Offer Status *</label>
+        <p-multiSelect [options]="_mkt.marketOfferStatusArray"  formControlName="marketOfferStatus"></p-multiSelect>
+      </div>
+      <div class="c-form-field">
+        <label>Effective Date *</label>
+        <p-multiSelect [options]="_mkt.effectiveDateArray"  formControlName="effectiveDate"></p-multiSelect>
+      </div>
+    </div>
+    <div class="c-form-wrap">
+      <div class="c-form-field">
+        <label>Market Offer Description Type *</label>
+        <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+      </div>
+      <div class="c-form-field offset-half">
+        <label>Market Offer Language *</label>
+        <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" [autoWidth]="false" placeholder="Choose"></p-dropdown>
+      </div>
+    </div>
+  </form>

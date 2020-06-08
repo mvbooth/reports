@@ -1,0 +1,22 @@
+<form [formGroup]="accessContAudit">
+  <span class="run-in-background-note">
+    <mat-icon>info</mat-icon> Due to performance considerations, it is recommended to run this report in Background. See sidebar menu for selection.
+  </span>
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-radio-group formControlName="user">
+        <mat-radio-button value="Current" color="primary">Current Users</mat-radio-button>
+        <mat-radio-button value="All" color="primary">All Users</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+</form>

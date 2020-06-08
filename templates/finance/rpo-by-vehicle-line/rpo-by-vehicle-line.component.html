@@ -1,0 +1,28 @@
+<form [formGroup]="rpoVehicleComponent">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mat-radio-group formControlName="status">
+        <mat-radio-button value="WIP" checked>Current</mat-radio-button>
+        <mat-radio-button value="PUB">Published Date as of *</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="c-form-field offset-half">
+      <mat-form-field>
+        <input matInput [matDatepicker]="publishDatepicker" placeholder="Published Date" formControlName="publishDate" (focus)="publishDatepicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="publishDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #publishDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mvp-vehicle-line-form [reportRef]="_fr" [form]="rpoVehicleComponent"></mvp-vehicle-line-form>
+
+</form>

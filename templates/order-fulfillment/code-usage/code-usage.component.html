@@ -1,0 +1,16 @@
+<form [formGroup]="codeUsageForm">
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" type="text" formControlName="description" placeholder="Report Description *">
+      </mat-form-field>
+    </div>
+  </div>
+  <mvp-vehicle-line-form [reportRef]="_of" [form]="codeUsageForm"></mvp-vehicle-line-form>
+  <div class="c-form-wrap">
+    <div class="c-form-field offset-three-quarters">
+      <label>Option Category *</label>
+      <p-multiSelect [options]="_of.optionCategoryArray" formControlName="optionGroup" [filter]="false"></p-multiSelect>
+    </div>
+  </div>
+</form>

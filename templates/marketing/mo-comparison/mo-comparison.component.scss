@@ -1,0 +1,38 @@
+@import '~_variables.scss';
+.c-market-offer-lists.no-align {
+  .c-form-field {
+    max-width: 40%;
+    &.c-market-offer-actions {
+      padding: 0 5px;
+      .mat-flat-button {
+        width: 65px;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.sort-inputs{
+  margin:15px 0;
+  .sort-available, .sort-selected{
+    display:inline-block;
+    width: 48.5%;
+
+    p-dropdown{
+      width: 100%;
+    }
+  }
+  .sort-selected{
+    width: 37.5%;
+  }
+  .sort-spacer{
+    display:inline-block;
+    width:7%;
+  }
+}
+
+div.inactive-mo{
+    color:$placeholder-gray;
+}
+
+

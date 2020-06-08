@@ -1,0 +1,33 @@
+<form [formGroup]="includedContentRpt">
+   
+    <div class="c-form-wrap">
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+        </mat-form-field>
+      </div>
+    </div>
+    <mvp-vehicle-line-form [reportRef]="_mkt" [form]="includedContentRpt"></mvp-vehicle-line-form>
+    <div class="c-form-wrap">
+      <div class="c-form-field">
+        <label>Market Offer Status *</label>
+        <p-dropdown [options]="_mkt.marketOfferStatusArray" formControlName="marketOfferStatus" placeholder="Choose"
+                    [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Effective Date *</label>
+        <p-dropdown [options]="_mkt.effectiveDateArray" formControlName="effectiveDate" placeholder="Choose"
+                       [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Option Description Type *</label>
+        <p-dropdown [options]="_mkt.descriptionTypeArray" formControlName="optionDescriptionType" placeholder="Choose"
+                    [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="c-form-field">
+        <label>Option Language *</label>
+        <p-dropdown [options]="_mkt.languageListArray" formControlName="optionLanguage" placeholder="Choose"
+                    [autoWidth]="false"></p-dropdown>
+      </div>
+    </div>
+  </form>

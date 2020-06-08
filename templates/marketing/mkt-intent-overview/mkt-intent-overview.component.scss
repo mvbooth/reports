@@ -1,0 +1,34 @@
+@import '~_variables.scss';
+.c-market-offer-lists.no-align {
+  .c-form-field {
+    max-width: 40%;
+
+    &.c-market-offer-actions {
+      padding: 45px 5px 0 5px;
+      .mat-flat-button {
+        width: 65px;
+        padding: 0px;
+      }
+    }
+  }
+}
+
+.filters{
+  margin-bottom:1rem;
+
+  .c-form-field {
+    flex: none;
+    margin-right: 5px;
+
+    .mat-checkbox{
+      margin-right: 15px;
+      display:block;
+    }
+  }
+}
+
+div.inactive-mo{
+  color:$placeholder-gray;
+}
+
+

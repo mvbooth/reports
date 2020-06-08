@@ -1,0 +1,17 @@
+<div class="status">
+  <mat-radio-group>
+    <mat-radio-button
+      value="{{CURRENT}}"
+      [checked]="status === CURRENT"
+      (click)="changeStatus(CURRENT)">
+        Current
+    </mat-radio-button>
+    <mat-radio-button
+      value="{{BY_PUBLISHED_DATE}}"
+      (click)="changeStatus(BY_PUBLISHED_DATE)"
+      [disabled]="!readyToEnable"
+      [checked]="status === BY_PUBLISHED_DATE">
+        Latest Published Date
+    </mat-radio-button>
+  </mat-radio-group>
+</div>

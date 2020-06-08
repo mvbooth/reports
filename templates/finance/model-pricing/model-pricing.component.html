@@ -1,0 +1,52 @@
+  <form [formGroup]="modelPricingComponent">
+    <div class="c-form-wrap">
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mvp-vehicle-line-form [reportRef]="_fr" [form]="modelPricingComponent"></mvp-vehicle-line-form>
+
+    <div class="c-form-wrap">
+
+      <div class="c-form-field">
+        <label>Merchandise Model Code</label>
+        <p-multiSelect [options]="_fr.modelCodeArray"  formControlName="mmcCode" [filter]="false"></p-multiSelect>
+      </div>
+
+      <div class="c-form-field">
+        <label>Model Restriction String</label>
+        <p-dropdown [options]="_fr.restrictionStringArray" formControlName="modelRestrictionString" placeholder="Choose"
+                    [autoWidth]="false"></p-dropdown>
+      </div>
+    </div>
+    <div class="c-form-wrap">
+      <div class="c-form-field status">
+        <mvp-status [status]="modelPricingComponent.get('status').value" (statusChanged)="modelPricingComponent.get('status').setValue($event)" [vehicleLine]="_fr.vehicleLine.value"></mvp-status>
+      </div>
+      <div class="c-form-field">
+        <mvp-published-date
+          [status]="modelPricingComponent.get('status').value"
+          [vehicleLine]="_fr.vehicleLine.value"
+          [required]="modelPricingComponent.get('publishDate').validator != null"
+          (change)="changePublishDate($event)"
+          [selectedOpts]="publishId">
+        </mvp-published-date>
+      </div>
+      <div class="c-form-field">
+        <mvp-effective-date
+          [status]="modelPricingComponent.get('status').value"
+          [vehicleLine]="_fr.vehicleLine.value"
+          [publishId]="publishId"
+          [required]="modelPricingComponent.get('publishDate').validator != null"
+          (change)="changeEffectiveDate($event)"
+          [templateEffDate]= "templateEffDateInput" >
+        </mvp-effective-date>
+      </div>
+    </div>
+  </form>
+
+
+

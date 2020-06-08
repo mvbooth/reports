@@ -1,0 +1,60 @@
+<div class="toolbar">
+  <div class="toolbar-group">
+    <mat-form-field floatLabel="never">
+      <mat-placeholder>
+        Search
+      </mat-placeholder>
+      <input matInput autocomplete="off" mvpSearchInput [disabled]="isLoading" (keyup)="applyFilter($event.target.value)" (clear)="applyFilter('')">
+    </mat-form-field>
+  </div>
+  <div class="toolbar-group">
+    <button mat-flat-button color="warn" (click)="deleteOutput()" [disabled]="disableActions">Delete</button>
+  </div>
+</div>
+
+
+<!-- Sort not working -->
+<div class="table-scroll-box table-half-screen">
+  <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="dataSource" mvpTableSelectedHighlight matSortActive="lastrun" matSortDirection="desc">
+    <ng-container matColumnDef="report">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="report">Report</th>
+      <td mat-cell *matCellDef="let reportObj">{{reportObj.report}}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="description">Description</th>
+      <td mat-cell *matCellDef="let reportObj">{{reportObj.description}}</td>
+    </ng-container>
+    <ng-container matColumnDef="lastRun">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastrun">Last Run</th>
+      <td mat-cell *matCellDef="let reportObj">{{reportObj.lastrun}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="selectRow(row.description)"
+      (dblclick)="getHistory()"></tr>
+  </table>
+</div>
+
+<h3>Scheduled Report Output History</h3>
+<div class="table-scroll-box table-half-screen history-table">
+  <table mat-table matSort [dataSource]="historyDataSource" mvpTableSelectedHighlight>
+    <ng-container matColumnDef="report">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let historyObj">{{historyObj.description}}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Run Date</th>
+      <td mat-cell *matCellDef="let historyObj">{{historyObj.runDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="lastRun">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let historyObj">{{historyObj.status}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
+      (click)="selectHistoryRow(row.description,row.versionDate)"></tr>
+  </table>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate" class="history-progress-bar"></mat-progress-bar>
+</div>
+<button mat-raised-button class="btn-mct btn-right download-history-btn" color="primary" (click)="fetchReport()"
+  [disabled]="disableHistoryActions">Download</button>
+<span>*double click one of the schedules above to see associated outputs.</span>

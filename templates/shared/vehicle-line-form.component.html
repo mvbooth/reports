@@ -1,0 +1,155 @@
+<ng-container *ngIf="isFinance">
+    <div [formGroup]="form" class="c-form-wrap">
+        <div class="c-form-field">
+            <label>Marketing Group {{reportRef.marketGroup.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="marketGroupMulti">
+                <p-multiSelect [options]="reportRef.marketGroupArray" formControlName="marketingGroup" [filter]="false" placeholder="Choose"
+                    (onChange)="onChange('marketingGroup')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!marketGroupMulti">
+                <p-dropdown [options]="reportRef.marketGroupArray" formControlName="marketingGroup" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('marketingGroup')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Model Year {{reportRef.modelYear.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="modelYearMulti">
+                <p-multiSelect [options]="reportRef.modelYearArray" formControlName="modelYear" [filter]="false" placeholder="Choose" (onChange)="onChange('modelYear')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!modelYearMulti">
+                <p-dropdown [options]="reportRef.modelYearArray" formControlName="modelYear" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('modelYear')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Nameplate {{reportRef.nameplate.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="namePlateMulti">
+                <p-multiSelect [options]="reportRef.namePlateArray" formControlName="namePlate" [filter]="false" placeholder="Choose" (onChange)="onChange('namePlate')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!namePlateMulti">
+                <p-dropdown [options]="reportRef.namePlateArray" formControlName="namePlate" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('namePlate')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Vehicle Line {{reportRef.vehicleLine.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="vehicleLineMulti">
+                <p-multiSelect [options]="reportRef.vehicleLineArray" formControlName="vehicleLine" [filter]="false" (onChange)="onChange('vehicleLine')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!vehicleLineMulti">
+                <p-dropdown [options]="reportRef.vehicleLineArray" formControlName="vehicleLine" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('vehicleLine')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Book Code {{reportRef.bookCode.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="bookCodeMulti">
+                <p-multiSelect [options]="reportRef.bookCodeArray" formControlName="bookCode" [filter]="false"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!bookCodeMulti">
+                <p-dropdown [options]="reportRef.bookCodeArray" formControlName="bookCode" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="isMarketing">
+    <div [formGroup]="form" class="c-form-wrap">
+        <div class="c-form-field">
+            <label>Model Year {{reportRef.modelYear.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="modelYearMulti">
+                <p-multiSelect [options]="reportRef.modelYearArray" formControlName="modelYear" (onChange)="onChange('modelYear')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!modelYearMulti">
+                <p-dropdown [options]="reportRef.modelYearArray" formControlName="modelYear" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('modelYear')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Marketing Group {{reportRef.marketGroup.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="marketGroupMulti">
+                <p-multiSelect [options]="reportRef.marketingGroupArray" formControlName="marketingGroup" (onChange)="onChange('marketingGroup')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!marketGroupMulti">
+                <p-dropdown [options]="reportRef.marketingGroupArray" formControlName="marketingGroup" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('marketingGroup')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Market {{reportRef.geographicMarket.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="marketMulti">
+                <p-multiSelect [options]="reportRef.marketArray" formControlName="geographicMarket" [filter]="false" (onChange)="onChange('geographicMarket')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!marketMulti">
+                <p-dropdown [options]="reportRef.marketArray" formControlName="geographicMarket" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('geographicMarket')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Nameplate {{reportRef.nameplate.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="namePlateMulti">
+                <p-multiSelect [options]="reportRef.nameplateArray" formControlName="namePlate" (onChange)="onChange('namePlate')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!namePlateMulti">
+                <p-dropdown [options]="reportRef.nameplateArray" formControlName="namePlate" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('namePlate')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Vehicle Line {{reportRef.vehicleLine.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="vehicleLineMulti">
+                <p-multiSelect [options]="reportRef.vehicleLineArray" formControlName="vehicleLine" (onChange)="onChange('vehicleLine')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!vehicleLineMulti">
+                <p-dropdown [options]="reportRef.vehicleLineArray" formControlName="vehicleLine" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('vehicleLine')"></p-dropdown>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="isOf">
+    <div [formGroup]="form" class="c-form-wrap">
+        <div class="c-form-field">
+            <label>Model Year {{reportRef.modelYear.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="modelYearMulti">
+                <p-multiSelect [options]="reportRef.modelYearArray" formControlName="modelYear" (onChange)="onChange('modelYear')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!modelYearMulti">
+                <p-dropdown [options]="reportRef.modelYearArray" formControlName="modelYear" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('modelYear')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Marketing Group {{reportRef.marketGroup.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="marketGroupMulti">
+                <p-multiSelect [options]="reportRef.marketingGroupArray" formControlName="marketingGroup" (onChange)="onChange('marketingGroup')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!marketGroupMulti">
+                <p-dropdown [options]="reportRef.marketingGroupArray" formControlName="marketingGroup" placeholder="Choose" [autoWidth]="false"
+                    (onChange)="onChange('marketingGroup')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Market {{reportRef.market.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="!marketMulti">
+                <p-dropdown [options]="reportRef.marketArray" formControlName="geographicMarket" placeholder="Choose" [autoWidth]="false"
+                (onChange)="onChange('geographicMarket')"></p-dropdown>
+            </ng-container>
+            <ng-container *ngIf="marketMulti">
+                <p-multiSelect [options]="reportRef.marketArray" formControlName="geographicMarket" [filter]="false" (onChange)="onChange('geographicMarket')"></p-multiSelect>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Nameplate {{reportRef.nameplate.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="namePlateMulti">
+                <p-multiSelect [options]="reportRef.nameplateArray" formControlName="namePlate" (onChange)="onChange('namePlate')"></p-multiSelect>
+            </ng-container>
+            <ng-container *ngIf="!namePlateMulti">
+                <p-dropdown [options]="reportRef.nameplateArray" formControlName="namePlate" placeholder="Choose" [autoWidth]="false" (onChange)="onChange('namePlate')"></p-dropdown>
+            </ng-container>
+        </div>
+        <div class="c-form-field">
+            <label>Book Code {{reportRef.bookCode.validator ? '*' : ''}}</label>
+            <ng-container *ngIf="!bookCodeMulti">
+                <p-dropdown [options]="reportRef.bookCodeArray" formControlName="bookCode" placeholder="Choose" [autoWidth]="false"></p-dropdown>
+            </ng-container>
+            <ng-container *ngIf="bookCodeMulti">
+                <p-multiSelect [options]="reportRef.bookCodeArray" formControlName="bookCode" [filter]="false"></p-multiSelect>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

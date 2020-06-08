@@ -1,0 +1,15 @@
+<div  *ngIf="required">
+  <label>
+    Effective Date(s)
+    <span *ngIf="required">*</span>
+  </label>
+  <p-multiSelect
+    [options]="effDateOptions"
+    [filter]="false"
+    [disabled]="!readyToDisplay"
+    (onChange)="selection()"
+    placeholder="Choose"
+    [(ngModel)]="selectedOptions">
+  </p-multiSelect>
+  <p></p>
+</div>

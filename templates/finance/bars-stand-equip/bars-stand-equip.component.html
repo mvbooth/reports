@@ -1,0 +1,47 @@
+<form [formGroup]="changeBarsStandEquip">
+ 
+  <div class="c-form-wrap">
+    <div class="c-form-field half">
+      <mat-form-field>
+        <input matInput autocomplete="off" placeholder="Report Description *" formControlName="description">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mvp-vehicle-line-form [reportRef]="_fr" [form]="changeBarsStandEquip"></mvp-vehicle-line-form>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <mvp-published-date
+        [status]="'PUB'"
+        [vehicleLine]="_fr.vehicleLine.value"
+        [required]="publishIsRequired"
+        (change)="changePublishDate($event)"
+        [selectedOpts]="changeBarsStandEquip.get('publishDate').value">
+      </mvp-published-date>
+    </div>
+    <div class="c-form-field">
+      <mvp-effective-date
+        [status]="'PUB'"
+        [vehicleLine]="_fr.vehicleLine.value"
+        [publishId]="_fr.publishId.value"
+        [required]="publishIsRequired"
+        (change)="changeEffectiveDate($event)"
+        [templateEffDate]= "templateEffDateInput" >
+      </mvp-effective-date>
+    </div>
+  </div>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <label>Merchandise Model Code </label>
+      <p-multiSelect [options]="_fr.modelCodeArray"  formControlName="mmcCode"></p-multiSelect>
+    </div>
+
+    <div class="c-form-field">
+      <label>Model Restriction String </label>
+      <p-multiSelect [options]="_fr.restrictionStringArray" formControlName="modelRestrictionString"></p-multiSelect>
+    </div>
+
+  </div>
+</form>
