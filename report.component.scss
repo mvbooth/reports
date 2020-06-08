@@ -1,0 +1,69 @@
+@import '~_variables.scss';
+
+.c-column-wrap {
+  display: flex;
+  flex: 1 1 100%;
+  max-height: calc(-250px + 100vh);
+  .c-sidebar {
+    background-color: $background-gray;
+    border-right: 2px solid $divider-gray;
+    //flex: 1 1 15%;
+    //min-height: calc(100vh - 257px);
+    //max-height: calc(100vh - 257px);
+    //min-width: 13em;
+    //max-width: 13em;
+  }
+  .c-main {
+    display: flex;
+    flex: 1 1 85%;
+    overflow-y: auto;
+    min-height: calc(100vh - 250px);
+    max-height: calc(100vh - 250px);
+  }
+}
+
+.modal-progress-bar {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+}
+
+mvp-sidebar,
+.container {
+  position:relative;
+  flex: 1 1 100%;
+  flex-direction: column;
+  padding: 1rem 15px;
+}
+
+mvp-sidebar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 257px);
+  max-height: calc(100vh - 257px);
+}
+
+h3 {
+  margin-top: 0;
+  width: 100%;
+  span {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: normal;
+  }
+}
+
+.required-note {
+  position:absolute;
+  top:10px;
+  right:10px;
+}
+
+@media screen and (max-width: 50em) {
+.required-note {
+  position: static;
+}
+}
+
+

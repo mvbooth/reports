@@ -1,0 +1,222 @@
+<h2 mat-diaglog-title class="mat-dialog-title" [ngClass]="{ 'loading-title': isLoading }">Schedule A Report</h2>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate" class="modal-progress-bar"></mat-progress-bar>
+<mat-dialog-content>
+  <form class="container-fluid" [formGroup]="formGroup">
+    <div class="c-form-wrap">
+
+      <div class="c-form-field half">
+        <mat-form-field>
+          <input matInput autocomplete="off" placeholder="Save As" formControlName="reportDescription">
+        </mat-form-field>
+      </div>
+
+      <div class="c-form-wrap">
+        <mat-checkbox formControlName="isActive">Schedule Active</mat-checkbox>
+      </div>
+
+    </div>
+
+    <div>
+      <label>Frequency *</label>
+      <div class="c-form-wrap">
+        <div class="c-form-field">
+          <p-selectButton [options]="scheduleOptions" [(ngModel)]="selectedSchedule" formControlName="dailyMonthlyYearly" (ngModelChange)="toggleScheduleComponent($event)"></p-selectButton>
+        </div>
+      </div>
+
+      <!-- Daily -->
+      <div class="c-form-wrap" *ngIf=" selectedSchedule === 'ByDay'">
+
+        <div class="c-form-field">
+          <span>Run every <input autocomplete="off" pInputText type="number" min="1" formControlName="reportFrequency">day(s)</span>
+        </div>
+
+      </div>
+
+      <!-- Weekly -->
+      <div *ngIf=" selectedSchedule === 'ByWeek'">
+
+        <div class="c-form-wrap">
+
+          <div class="c-form-field">
+            <span>Run every
+              <input autocomplete="off" pInputText type="number" formControlName="reportFrequency" min="1"> week(s) on:
+            </span>
+          </div>
+
+        </div>
+
+        <div class="c-form-wrap">
+
+          <div class="c-form-field">
+            <p-selectButton [options]="daysOfWeek" multiple="multiple" formControlName="weekDays"></p-selectButton>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Monthly -->
+      <div *ngIf=" selectedSchedule === 'ByMonth'">
+        <label>Generate Report</label>
+        <div class="c-form-wrap monthly-section">
+
+          <div>
+            <!-- <mat-radio-button (change)="toggleMonthlyScheduleOptions()"></mat-radio-button> -->
+            <p-radioButton name="monthGroup" [value]="false" formControlName="isScheduledForMonthDay" (ngModelChange)="toggleMonthlyScheduleOptions()"></p-radioButton>
+          </div>
+
+          <span class="monthly-schedule"> The </span>
+
+          <div>
+            <p-dropdown [options]="weekNumberSelections" formControlName="monthWeekNumber"></p-dropdown>
+          </div>
+
+          <div>
+            <p-dropdown [options]="monthWeekDays" multiple="multiple" formControlName="monthWeekDay">
+            </p-dropdown>
+          </div>
+
+          <span class="of-every"> of every </span>
+
+          <div>
+            <input autocomplete="off" pInputText formControlName="mwReportFrequency" type="number" min="1" (ngModelChange)="captureReportFrequency()">
+          </div>
+
+          <span> month(s) </span>
+
+        </div>
+
+        <div class="c-form-wrap monthly-section">
+
+          <div>
+            <!-- <mat-radio-button (change)="toggleMonthlyScheduleOptions()" checked="isScheduledForMonthDay"></mat-radio-button> -->
+            <p-radioButton name="monthGroup" [value]="true" formControlName="isScheduledForMonthDay" (ngModelChange)="toggleMonthlyScheduleOptions()"></p-radioButton>
+          </div>
+
+          <span class="monthly-schedule"> Day </span>
+
+          <div>
+            <input autocomplete="off" pInputText formControlName="monthDayNumber" type="number" min="1" max="31">
+          </div>
+
+          <span class="of-every"> of every </span>
+
+          <div>
+            <input autocomplete="off" pInputText formControlName="mdReportFrequency" type="number" min="1" (ngModelChange)="captureReportFrequency()">
+          </div>
+
+          <span> month(s) </span>
+
+        </div>
+      </div>
+
+      <!-- Yearly -->
+      <div *ngIf=" selectedSchedule === 'ByYear'">
+
+        <label>Generate Report</label>
+        <div class="c-form-wrap yearly-section">
+
+          <div>
+            <p-radioButton name="yearGroup" [value]="false" formControlName="isScheduledForYearDay" (ngModelChange)="toggleYearlyScheduleOptions()"></p-radioButton>
+          </div>
+
+          <span class="yearly-schedule"> The </span>
+
+          <div>
+            <p-dropdown [options]="weekNumberSelections" formControlName="yearWeekNumber"></p-dropdown>
+          </div>
+
+          <div>
+            <p-dropdown [options]="monthWeekDays" formControlName="yearWeekDay"></p-dropdown>
+          </div>
+
+          <span class="of-every"> of </span>
+
+          <div>
+            <p-dropdown [options]="monthsOfYear" formControlName="yearMonth" (ngModelChange)="captureAnnualYearMonth()"></p-dropdown>
+          </div>
+
+        </div>
+
+        <div class="c-form-wrap yearly-section">
+
+          <div>
+            <!-- <mat-radio-button (change)="toggleYearlyScheduleOptions()"></mat-radio-button> -->
+            <p-radioButton name="yearGroup" [value]="true" formControlName="isScheduledForYearDay" (ngModelChange)="toggleYearlyScheduleOptions()"></p-radioButton>
+          </div>
+
+          <span class="yearly-schedule"> Day </span>
+
+          <div>
+            <input autocomplete="off" pInputText formControlName="yearDayNumber" type="number" min="1" max="31">
+          </div>
+
+          <span class="of-every"> of every </span>
+
+          <div>
+            <p-dropdown [options]="monthsOfYear" formControlName="dYearMonth" (ngModelChange)="captureAnnualYearMonth()"></p-dropdown>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="c-form-wrap">
+        <div class="c-form-field">
+          <p>* Start Date:</p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate" (ngModelChange)="captureScheduleStartDate()"
+              name="dateRangeValueStart" placeholder="Select a Start Date">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="c-form-field">
+          <p>End Date:</p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate" (ngModelChange)="captureScheduleEndDate()"
+              placeholder="Select an End Date">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+          <label class="error-message"
+                 *ngIf="!formGroup.get('noEndDate').value && !validDateRange(formGroup.get('startDate'), formGroup.get('endDate'))">
+            Start date must be before End date
+          </label>
+        </div>
+
+      </div>
+
+      <div class="c-form-wrap">
+        <div class="c-form-field">
+          <label>
+            * Report Run Time:
+            <ng-container *ngIf="this.startDateZone">({{this.startDateZone}})</ng-container>
+          </label>
+          <p-calendar readonlyInput="true" formControlName="startTime" [timeOnly]="true" [showIcon]="true"
+            (ngModelChange)="captureScheduleRunTime()" hourFormat="24" placeholder="Select Run Time"></p-calendar>
+        </div>
+
+        <div class="c-form-field">
+          <mat-checkbox (ngModelChange)="toggleEndDate()" formControlName="noEndDate">No End Date</mat-checkbox>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="c-form-wrap">
+    <div class="c-form-field">
+      <div mat-dialog-actions class="schedule-buttons">
+        <button mat-button color="warn" (click)="close()">Cancel</button>
+        <button *ngIf="!data.isEditSchedule" mat-raised-button color="primary" (click)="createSchedule()"
+          [disabled]="!this.formGroup.valid || !validDateRange(formGroup.get('startDate'), formGroup.get('endDate'))">Create Schedule</button>
+        <button *ngIf="data.isEditSchedule" mat-raised-button color="primary" (click)="updateSchedule()"
+          [disabled]="!updateChanges || !this.formGroup.valid || !validDateRange(formGroup.get('startDate'), formGroup.get('endDate'))">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>

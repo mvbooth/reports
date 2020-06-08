@@ -1,0 +1,21 @@
+<p-toast key="reportToast" (onClose)="reportToastClosed()"></p-toast>
+<mvp-navigation></mvp-navigation>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate" class="modal-progress-bar"></mat-progress-bar>
+<div class="c-column-wrap">
+    <div class="c-sidebar">
+        <mvp-sidebar (eReportAction)="processFormAction($event)"></mvp-sidebar>
+    </div>
+    <div class="container c-main">
+        <div [hidden]="!reportInfo || !reportInfo.group">
+            <ng-container *ngIf="reportInfo">
+                <h3>{{reportInfo.group}}{{reportInfo.name ? ':' : ''}} {{reportInfo.name}}
+                    <span class="required-note">
+                        * indicates a required field
+                    </span>
+                </h3>
+            </ng-container>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <mvp-page-loader [visible]="isFirstLoad" [title]="'Loading Report Options'"></mvp-page-loader>
+</div>

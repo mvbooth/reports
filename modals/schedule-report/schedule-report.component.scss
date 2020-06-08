@@ -1,0 +1,43 @@
+@import "../../../../_variables.scss";
+.c-form-wrap .c-form-field {
+  padding-top: 10px;
+  overflow: visible;
+  .schedule-buttons {
+    margin-bottom: 1vh;
+  }
+  .mat-dialog-actions {
+    box-sizing: content-box;
+  }
+}
+
+
+.monthly-schedule{
+  padding-left:0px;
+  padding-right:15px;
+  padding-top:5px;
+}
+
+.yearly-schedule{
+  padding-left:0px;
+  padding-right:10px;
+  padding-top:5px;
+}
+
+.of-every{
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.yearly-section{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.monthly-section{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.error-message {
+  color: $warning-red;
+}
+

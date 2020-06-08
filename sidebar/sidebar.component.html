@@ -1,0 +1,10 @@
+<ng-container *ngIf="showingReport || showingSchedules">
+    <div class="c-action-container">
+        <button mat-flat-button color="primary" [disabled]="!reportValid" (click)="triggerReportAction(1)">Run In Background</button>
+        <button mat-flat-button color="primary" [disabled]="!reportValid" (click)="triggerReportAction(2)">View</button>
+        <button mat-flat-button color="primary" [disabled]="!reportValid" (click)="openScheduleModal()" >Schedule</button>
+        <button mat-flat-button color="primary" [disabled]="!reportValid" (click)="triggerReportAction(4)">Save As Template</button>
+        <button mat-flat-button color="primary" [disabled]="!reportValid" [hidden]="!_reportService.showingReportTemplate" (click)="triggerReportAction(5)">Save Updates</button>
+        <button mat-flat-button color="primary" [disabled]="!reportValid" [hidden]="!_reportService.loadTemplateFromSchedule" (click)="triggerReportAction(6)">Save Updates</button>
+    </div>
+</ng-container>

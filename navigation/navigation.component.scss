@@ -1,0 +1,71 @@
+@import '~_variables.scss';
+
+.c-navigation {
+    display: flex;
+    padding:1rem 15px;
+    border-bottom:1px solid $divider-gray;
+    height: 7rem;
+    overflow: auto;
+    & > div {
+        display: flex;
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+        &.c-report-select {
+            padding-right: 10px;
+            mat-form-field {
+                margin-right: 3px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+    }
+
+    div:first-of-type {
+        min-width: 20em;
+  }
+    div:last-of-type {
+        min-width: 36em;
+  }
+
+    h2 {
+        flex: 0 0 100%;
+    }
+
+    ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .c-report-select {
+        /deep/ .mat-form-field-label-wrapper {
+            .mat-form-field-label {
+                color: $default-gray;
+            }
+        }
+    }
+    
+
+    .s-microheader {
+        margin:0 0 1rem;
+        font-size:.85rem;
+    }
+
+    mat-nav-list {
+        display:flex;
+    }
+
+    button {
+        margin-right: 5px;
+    }
+    mat-form-field {
+        flex: 1 1;
+    }
+    .mat-stroked-button {
+      padding: 0 8px;
+      border: 2px solid $primary-blue;
+      background-color: $primary-blue;
+      color: $white;
+      height: 39px;
+    }
+}

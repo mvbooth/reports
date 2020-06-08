@@ -1,0 +1,18 @@
+<div class="c-navigation" *ngIf="reportsArr.length > 0">
+  <div [formGroup]="reportSelects" class="c-report-select">
+    <h2 class="s-microheader">Standard Reports</h2>
+      <mat-form-field *ngFor="let reportSection of reportsArr">
+        <mat-label>{{reportSection.folderName}}</mat-label>
+        <mat-select #ms (selectionChange)="reportSelect($event)" [id]="reportSection.folderName" [formControlName]="formatFormName(reportSection.folderName)" panelClass="c-report-dropdown" [disableOptionCentering]="true">
+          <mat-option *ngFor="let report of reportSection.reports" [value]="reportSection.folderName+'-'+report.id">{{report.reportName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div>
+    <h2 class="s-microheader">My Reports</h2>
+    <button mat-stroked-button (click)="loadMyReportSection('scheduled-report-output')" [ngClass]="clickedMyReport === 1 ? 'mat-primary':''">Scheduled Report Output</button>
+    <button mat-stroked-button (click)="loadMyReportSection('background-reports')" [ngClass]="clickedMyReport === 2 ? 'mat-primary':''">Background Reports</button>
+    <button mat-stroked-button (click)="loadMyReportSection('templates')" [ngClass]="clickedMyReport === 3 ? 'mat-primary':''">Templates</button>
+    <button mat-stroked-button (click)="loadMyReportSection('schedules')" [ngClass]="clickedMyReport === 4 ? 'mat-primary':''">Schedules</button>
+  </div>
+</div>
